@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+
+    <title>H5</title>
+
+    <!-- 基本资源库 -->
+    <script src='../js/lib/jquery-3.2.1.min.js'></script>
+    <script src='../js/lib/jquery-ui.min.js'></script>
+    <script src='../js/lib/jquery.fullpage.js'></script>
+
+    <!-- H5对象资源 && 管理内容：页-组件  -->
+    <script src='../js/H5.js'></script>
+    <link rel="stylesheet" href="../css/H5.css">
+    
+    <script src='../js/H5ComponentBase.js'></script>
+    <link rel="stylesheet" href="../css/H5ComponentBase.css">
+    
+    <style>
+        body{
+            margin:0;
+            padding:0;
+        }
+    </style>
+    <body>
+            <!--1.内容组织：添加页面，添加组件
+                2.整合 fullpage.js支持页面切换
+                3.链式调用 -->
+                <!-- loader 有可能加载若干个资源 -->
+        <script>
+
+            var H5 = new H5();
+            H5
+            .addPage('face')
+                .addComponent('logo',{
+                    type:'base',
+                    text:'logo',
+                    width:400,
+                    height:100,
+                    center:true,
+                    css:{
+                        backgroundColor:'red',
+                        opacity: 0,
+                        transition: 'all ease 1s',
+                        top:0
+                    },
+                    animateIn:{top:100, opacity:1},
+                    animateOut:{top:0, opacity:0}
+                })
+                .addComponent('slogan',{
+                    type:'base',
+                    text:'slogan',
+                    width:400,
+                    height:100,
+                    center:true,
+                    css:{
+                        backgroundColor:'red',
+                        opacity: 0,
+                        transition: 'all ease 1s',
+                        top:50
+                    },
+                    animateIn:{top:150, opacity:1},
+                    animateOut:{top:50, opacity:0}
+                })
+            .addPage('desc')
+                .addComponent('caption',{
+                    type:'base',
+                    text:'核心理念',
+                    width:400,
+                    height:100,
+                    center:true,
+                    css:{
+                        backgroundColor:'green',
+                        transition: 'all ease 1s',
+                        opacity:0,
+                        top:50
+                    },
+                    animateIn:{top:150, opacity:1},
+                    animateOut:{top:50, opacity:0}
+                })
+            .addPage('page-3')
+                .addComponent('caption',{
+                    type:'base',
+                    text:'课程方向分布',
+                    width:400,
+                    height:100,
+                    center:true,
+                    css:{
+                        backgroundColor:'blue',
+                        opacity: 0,
+                        transition: 'all ease 1s',
+                        top:50
+                    },
+                    animateIn:{top:150, opacity:1},
+                    animateOut:{top:50, opacity:0}
+            })
+            .loader();
+
+           
+
+        </script>
+    </body>
+</html>

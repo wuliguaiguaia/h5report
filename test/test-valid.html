@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+
+    <title>fullpage 演示</title>
+    <script src='../js/lib/jquery-3.2.1.min.js'></script>
+    <script src='../js/lib/jquery.fullpage.js'></script>
+    <style type="text/css">
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+        .component{
+            width:50%;
+            height: 50px;
+            background-color: #fff;
+            color:#000;
+            display: none;
+        }
+
+       
+    </style> 
+    <body>
+    <!-- 用于验证 fullpage.js 切换页面，以及内容组织结构可用，组件能够进行动画
+     -->
+    <script type="text/javascript">
+
+        $(function (){
+            $('#h5').fullpage({
+                sectionsColor:['red','blue','green'],
+                // 任务一：入场出场动画
+                onLeave:function(index,nextIndex,direction){
+                    // debugger this 指 变化的页面，不是H5
+                    $('#h5').find('.page').eq(index-1).trigger('onLeave');
+                },
+                afterLoad:function(anchorLink,index){
+                    $('#h5').find('.page').eq(index-1).trigger('onLoad');
+                }
+            });
+
+            // 任务二：自定义触发事件
+            $('.page').on('onLeave',function(){
+                console.log(this.id,'>>==','onLeave');
+                $(this).find('.component').trigger('onLeave')
+            })
+            $('.page').on('onLoad',function(){
+                console.log(this.id,'>>==','onLoad');
+                $(this).find('.component').trigger('onLoad')
+            })
+
+            // 先触发leave 再触发load
+            
+            // 这里有隐藏的冒泡事件，父元素子元素同时具有的事件同时执行 触发 冒泡，不能用triggerHandler 会导致 第二个 slogan 无法正常 渐入
+            $('.component').on('onLeave',function(e){
+                $(this).fadeOut();
+                e.stopPropagation();
+                // return false;
+
+            })
+            $('.component').on('onLoad',function(e){
+                $(this).fadeIn();
+                e.stopPropagation();
+                // return false;
+            })
+        });
+
+
+    </script>
+        <!-- 任务三：编写初始页面 -->
+        <div id="h5">
+            <div class='page section' id='page1'>
+                <div class="component logo ">logo</div>
+                <div class="component slogan ">slogan</div>
+            </div>
+            <div class='page section' id='page2'>
+                <div class="component desc">描述</div>
+            </div>
+            <div class="page section " id='page3'>
+                <div class="component  bar">柱状图页</div>
+            </div>
+        </div>
+        
+<!-- 页面结构 
+    所有页面用 类page section和 唯一ID 标识 
+    每页里使用 类component 包裹 再加一个 代表内容的class       
+ -->
+
+    </body>
+
+</html>

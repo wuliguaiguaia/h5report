@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+
+    <title>H5PolyLine</title>
+
+    <!-- 基本资源库 -->
+    <script src='../js/lib/jquery-3.2.1.min.js'></script>
+    <script src='../js/lib/jquery-ui.min.js'></script>
+    <script src='../js/lib/jquery.fullpage.js'></script>
+
+    <!-- H5对象资源 && 管理内容：页-组件  -->
+    <script src='../js/H5.js'></script>
+    <link rel="stylesheet" href="../css/H5.css">
+    
+    <script src='../js/H5ComponentBase.js'></script>
+    <link rel="stylesheet" href="../css/H5ComponentBase.css">
+    
+    <!-- 引入折线图资源 -->
+    <script src='../js/H5ComponentPolyLine.js'></script>
+    <link rel="stylesheet" href="../css/H5ComponentPolyLine.css">
+
+    <style>
+        body{
+            margin:0;
+            padding:0;
+        }
+        .iphone{
+            width:340px;
+            height:540px;
+            position: absolute;
+            top:50%;
+            left:50%;
+            margin-top:-270px;
+            margin-left:-170px;
+            background-color: #fff;
+        }
+    </style>
+    <body>
+        <!-- 测试开发 H5ComponentPolyLine -->
+    <script type="text/javascript">
+        $(function(){
+            var cfg = {
+                type:'polyLine',
+                width:600,
+                height:400,
+                // text:'test',
+                data:[
+                    ['js',.4,'red'],
+                    ['html/css',.1],
+                    ['html5',.05],
+                    ['css3',.15],
+                    ['jquery',.03],
+                    ['bt',.27],
+                ],
+                css:{
+                    transition: 'all ease 1s',
+                    bottom:0,
+                    opacity:0,
+                },
+                animateIn: {bottom:'40%', opacity:1},
+                animateOut:{bottom:0, opacity:0},
+                center:true
+            }
+            var H5 = new H5ComponentPolyLine('myname',cfg);
+            $('.iphone').append(H5);
+
+            var leave = true;
+            $('body').click(function(){
+                // leave = false;
+                leave = !leave; //****达到循环效果
+                $('.H5_component').trigger(leave ? 'onLeave' : 'onLoad');
+                return false;
+            })
+        })
+
+    </script>
+    <div class='iphone'>
+    
+    </div>
+    </body>
+</html>

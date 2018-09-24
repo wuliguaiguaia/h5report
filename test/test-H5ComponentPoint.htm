@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+
+    <title>fullpage 演示</title>
+    <script src='../js/lib/jquery-3.2.1.min.js'></script>
+    <script src='../js/lib/jquery.fullpage.js'></script>
+    <script src='../js/H5ComponentBase.js'></script>
+    <link rel="stylesheet" href="../css/H5ComponentBase.css">
+    <script src='../js/H5ComponentPoint.js'></script>
+    <link rel="stylesheet" href="../css/H5ComponentPoint.css">
+    <style type="text/css">
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-size: 13px;
+        }
+        .iphone{
+            width:340px;
+            height:540px;
+            position: absolute;
+            top:50%;
+            left:50%;
+            margin-top:-270px;
+            margin-left:-170px;
+            background-color: #fff;
+        }
+        .H5_component_base{
+        }
+        /* .H5_component_base_load{
+            opacity: 1;
+            bottom: 20px;
+        }
+        .H5_component_base_leave{
+            opacity: 0;
+            bottom: 0px;
+        } */
+
+       
+    </style> 
+    <body>
+        <!-- 用于开发测试 H5ComponentBase 对象 (基本图文组件)-->
+        <!-- 将图文通用html 和 css代码 用js 封装
+        将图片和文字全部用 添加 对象形式 添加 -->
+        <div class='iphone'>
+            
+        </div>
+    </body>
+    <script type="text/javascript">
+            $(function(){
+                var cfg = {
+                    type:'point',
+                    text:'文本内容',
+                    data:[
+                        ['A',.4,'red'],
+                        ['B',.2,'green',0,'-70%'],
+                        ['C',.2,'blue',0,'120%'],
+                    ],
+                    width:214,
+                    height:214,
+                    center:true,
+                    css:{
+                        opacity: 0,
+                        transition: 'all ease 1s',
+                        bottom:0
+                    },
+                    animateIn:{bottom:50, opacity:1},
+                    animateOut:{bottom:0, opacity:0}
+                }
+                var H5 = new H5ComponentPoint('myname',cfg);
+                $('.iphone').append(H5);
+
+                var leave = true;
+                $('body').click(function(){
+                    // leave = false;
+                    leave = !leave; //****达到循环效果
+                    $('.H5_component').trigger(leave ? 'onLeave' : 'onLoad');
+                })
+            })
+
+    </script>
+
+</html>

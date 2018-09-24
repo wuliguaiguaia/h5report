@@ -1,0 +1,16 @@
+.H5_component_radar canvas{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+}
+
+.H5_component_radar .text{
+    position: absolute;
+    /* z-index: 9999; */
+    transition: all 1s
+}
+
+.H5_component_radar .textPad{
+    position: relative;
+}

@@ -1,0 +1,45 @@
+.H5_component_bar .line{
+    line-height: 25px;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.H5_component_bar .name{
+    width: 100px;
+    text-align: center;
+    display: inline-block;
+}
+
+.H5_component_bar .pre{
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.H5_component_bar .prebg{
+    transition: all ease 1s 1s;
+    height: 15px;
+    background-color: aqua;
+    width: 0;
+}
+.H5_component_bar_Load .prebg{
+    width: 100%;
+}
+
+.H5_component_bar_Leave .prebg{
+    width: 0;
+}
+
+.H5_component_bar .desc{
+    color: aqua;
+    display: inline-block;
+    opacity: 0;
+    transition: all ease 1s 2s;
+}
+
+.H5_component_bar_Leave .desc{
+    opacity: 0;
+}
+
+.H5_component_bar_Load .desc{
+    opacity: 1;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML> 
+<html> 
+<head>
+    <style>
+        canvas{
+            position: absolute;
+            top: 0;
+        }
+        canvas:first-of-type{
+            z-index: 1
+        }        
+        canvas:nth-of-type(2){
+            z-index: 2
+        }        
+        
+    </style>
+</head>
+<body> 
+    <script src='../js/lib/jquery-3.2.1.min.js'></script>
+<script>
+window.onload = function() {
+    var canvas = document.createElement('canvas');
+    var cxt = canvas.getContext('2d');
+    canvas.width = 400 ;
+    canvas.height = 400 ;
+    $('body').append(canvas);
+    cxt.translate(200,200)
+    cxt.beginPath();
+    cxt.moveTo(0,0)
+    cxt.lineWidth = 9
+    cxt.arc(0,0,200-20.5,Math.PI*3/2,Math.PI*2);   
+    cxt.closePath();
+    cxt.strokeStyle = 'blue';
+    cxt.stroke();
+    
+    var canvas = document.createElement('canvas');
+    var cxt = canvas.getContext('2d');
+    canvas.width = 400 ;
+    canvas.height = 400 ;
+    $('body').append(canvas);
+    cxt.strokeStyle = 'red';
+    cxt.translate(200,200)
+    cxt.beginPath();
+    cxt.lineWidth = 10
+    cxt.moveTo(0,0)
+    cxt.arc(0,0,200-20.5,Math.PI*3/2,Math.PI*2);   
+    cxt.closePath();
+    cxt.stroke()
+}
+</script> 
+  
+</body> 
+</html>

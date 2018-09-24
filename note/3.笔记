@@ -1,0 +1,142 @@
+1.  页面传播无限循环的问题
+    阻止事件冒泡 e.stopPropagation()
+    取消默认事件 e.preventDefault()
+    return false 具有以上功能，还有停止回调函数执行并立即返回，
+    triggerHandler() 可以取消默认操作，一定程度上阻止了冒泡，但有副作用，因为这里slogan无法正常显示 
+    
+2.fullPage 用法
+    1>.引入js文件，$('').fullPage({})
+    2>.html结构
+    <div id="dowebok">
+        <div class="section ">
+            <h3>第一屏</h3>
+        </div>
+        <div class="section active">
+                active 表示默认显示的屏  
+            <h3>第二屏</h3>
+        </div>
+        <div class="section">
+            <div class="slide">第三屏的第一屏</div>  
+            <div class="slide">第三屏的第二屏</div>  
+            <div class="slide">第三屏的第三屏</div>  
+            <div class="slide">第三屏的第四屏</div>  
+        </div>
+        <div class="section">
+            <h3>第四屏</h3>
+        </div>
+    </div>
+
+    3>.属性
+    slidesColor：滑动颜色
+    sectionsColor：屏幕颜色
+
+    4>.方法
+    afterLoad : 开始加载触发事件 {index,nextIndex,direction}
+    onLeave: 开始离开触发事件 {anchorLink,index}
+
+ 
+3.  $.extend()的用法  扩展已有的Object对象
+    jQuery.extend(target,obj1,obj2,....[objN])
+    用一个或多个对来扩展一个对象，然后返回已有的对象
+
+    例如合并setting 和 options 对象修改返回setting
+    var setting = {validate：false，limit：5，name："foo"};
+    var options = {validate: true, name:"bar"};
+    var newOptions= jQuery.extend(setting,options);
+
+    结果是：
+        newOptions = {validate: true, limit: 5, name:'bar'};
+
+4. slice(负数n) 倒数后n个 
+
+5. $.each 和 each
+    a. $.each
+        $.each(object,[callback])
+        object:需要遍历的对象或数组。
+        callback:每个成员/元素执行的回调函数。{第一个为对象的成员或数组的索引，第二个为对应变量或内容。如果需要退出 each 循环可使回调函数返回 false，其它返回值将被忽略。}
+
+        遍历数组，同时使用元素索引和内容。
+        $.each( [0,1,2], function(i, n){
+            alert( "Item #" + i + ": " + n );
+        });
+        遍历对象，同时使用成员名称和变量内容。
+        $.each( { name: "John", lang: "JS" }, function(i, n){
+            alert( "Name: " + i + ", Value: " + n );
+        });
+    b.each 对于每个匹配的元素所要执行的函数 返回 'false' 将停止循环
+
+        1>.迭代两个图像，并设置它们的 src 属性。注意:此处 this 指代的是 DOM 对象而非 jQuery 对象。
+        <img/><img/>
+        $("img").each(function(i){
+            this.src = "test" + i + ".jpg";
+        });
+
+        2>.使用 'return' 来提前跳出 each() 循环。
+        <button>Change colors</button>
+        <span></span> 
+        <div></div> 
+        <div></div>
+
+        <div></div> 
+        <div></div>
+        <div id="stop">Stop here</div> 
+        <div></div>
+
+        <div></div>
+        <div></div>
+
+        jQuery 代码:
+        $("button").click(function () { 
+            $("div").each(function (index, domEle) { 
+                // domEle == this 
+                $(domEle).css("backgroundColor", "yellow");  
+                if ($(this).is("#stop")) { 
+                    $("span").text("Stopped at div index #" + index); 
+                    return false; 
+                } 
+            });
+        });
+
+
+6.debugger 语句用于停止执行 JavaScript，并调用 (如果可用) 调试函数。
+
+使用 debugger 语句类似于在代码中设置断点。
+
+通常，你可以通过按下 F12 开启调试工具， 并在调试菜单中选择 "Console" 。
+
+7.引入bt <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+8.calc:动态获取长度
+  垂直居中 margin-top: calc((100% - 30px) / 2.5);
+
+9.谷歌浏览器字体最小为12px,需要再小 设置 transform:scale(.8);
+
+10.不要企图通过闭合现有路径来开始一条新路径，而开始一条新路径，以前的路径也不会闭合。
+
+11.循环里面 添加 间歇调用 会卡死
+
+12.stop(clearQueue,goToEnd)
+
+13.圣杯布局 中间自适应，两边固定
+
+     div>{middle,left,right} >>>>>> float:left position:relative;
+     div{padding:0 30 0 80}
+     middle{width:100%;}
+     left{width:80,margin-left:-100%;left:-80px}
+     right{width:30,margin-right:-80px;}
+
+ 双飞翼布局，中间固定 两边自适应
+    
+    middle>main-inner,left,right >>  float:left;position:relative
+    middle{width:100%}
+    middle>main-inner{margin : 0 180 0 180}
+    left{width:180,margin-left:-100%}
+    right{width:180,margi-left:-180}
+
+
+14. 两种状态的来回切换  
+    var flag = false;
+    cxt.fillStyle = (flag = !flag) ? 'red':'green';
+    ps:flag = !flag 还能实时改变flag的值
+
+15.canvas 同时绘制 环形和中心文字
